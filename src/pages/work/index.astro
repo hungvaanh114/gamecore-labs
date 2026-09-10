@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import PageHero from '../../components/PageHero.astro'; import ProjectCard from '../../components/ProjectCard.astro'; import CTASection from '../../components/CTASection.astro'; import { projects } from '../../data/projects';
+const filters = ['All','Mobile','PC','WebGL','Prototype','2D','3D'];
+---
+<BaseLayout title="Work & Demo Projects | GameCore Labs" description="Explore GameCore Labs demo concepts and replaceable portfolio project structure.">
+  <PageHero eyebrow="OUR WORK" title="Featured Projects" description="A selection of games and interactive project concepts. All current entries are clearly marked demos, not client work." compact />
+  <section class="section-tight"><div class="container"><div class="filters" role="group" aria-label="Filter projects">{filters.map((filter,i)=><button type="button" class:list={[{active:i===0}]} data-filter={filter} aria-pressed={i===0?'true':'false'}>{filter}</button>)}</div><div class="grid-3 project-grid">{projects.map(project => <ProjectCard {project} />)}</div><p class="no-results" data-no-results hidden>No concepts match this filter.</p></div></section><CTASection title="Have a Similar Project?" text="Tell us about the experience you want to create and where you need support." />
+</BaseLayout>
+<script>
+  const buttons=[...document.querySelectorAll<HTMLButtonElement>('[data-filter]')]; const cards=[...document.querySelectorAll<HTMLElement>('[data-project]')]; const empty=document.querySelector<HTMLElement>('[data-no-results]');
+  buttons.forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter||'All';buttons.forEach(b=>{const on=b===button;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});let count=0;cards.forEach(card=>{const show=filter==='All'||(card.dataset.filters||'').includes(filter);card.hidden=!show;if(show)count++;});if(empty)empty.hidden=count!==0;}));
+</script>
+<style>.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-bottom:2rem}.filters button{padding:.5rem .85rem;border:1px solid var(--line);border-radius:.48rem;background:#0d141f;color:#9da9b9;font-size:.8rem;font-weight:650;cursor:pointer}.filters button:hover,.filters button.active{background:#f3f5f9;color:#0a0f17}.no-results{text-align:center;color:#9ca8b8;padding:3rem}</style>

@@ -1,0 +1,5 @@
+---
+const { question, answer } = Astro.props;
+---
+<details class="faq card"><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>
+<style>.faq{border-radius:.65rem;background:#0d141f}.faq+ .faq{margin-top:.65rem}summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem 1.25rem;cursor:pointer;font-weight:680;list-style:none}summary::-webkit-details-marker{display:none}summary span{font-size:1.35rem;font-weight:400;transition:transform .2s}details[open] summary span{transform:rotate(45deg)}p{margin:0;padding:0 1.25rem 1.25rem;color:#a6b1c0;max-width:55rem}</style>

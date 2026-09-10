@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+const { service, detailed = false } = Astro.props;
+---
+<article class="service card card-hover">
+  <div class="icon"><Icon name={service.icon} size={25} /></div><h3>{service.title}</h3><p>{service.description}</p>
+  {detailed && <ul class="list-check">{service.capabilities.map((item:string) => <li>{item}</li>)}</ul>}
+</article>
+<style>.service{padding:1.4rem}.icon{display:grid;place-items:center;width:2.7rem;height:2.7rem;margin-bottom:1.15rem;border:1px solid rgba(124,92,252,.38);border-radius:.65rem;color:#a894ff;background:rgba(124,92,252,.08)}h3{font-size:1.03rem;margin:0 0 .45rem}p{margin:0;color:#9ca8b8;font-size:.9rem;line-height:1.6}</style>

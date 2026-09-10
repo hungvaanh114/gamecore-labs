@@ -1,0 +1,12 @@
+---
+import { withBase } from '../utils/paths';
+---
+<a class="logo" href={withBase('/')} aria-label="GameCore Labs home">
+  <span class="logo-mark" aria-hidden="true"><span></span></span>
+  <span>GameCore <b>Labs</b></span>
+</a>
+<style>
+  .logo{display:inline-flex;align-items:center;gap:.68rem;font-weight:760;letter-spacing:-.025em;font-size:.96rem}
+  .logo b{font-weight:500;color:#aeb8c7}.logo-mark{display:grid;place-items:center;width:1.75rem;height:1.75rem;border:1px solid rgba(255,255,255,.16);border-radius:.48rem;transform:rotate(45deg);background:linear-gradient(145deg,#314d8d,#6f4fe0);box-shadow:0 0 25px rgba(124,92,252,.2)}
+  .logo-mark span{width:.52rem;height:.52rem;border:2px solid white;border-radius:.12rem}
+</style>

@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import ServiceCard from '../components/ServiceCard.astro'; import SectionHeading from '../components/SectionHeading.astro'; import EngagementCards from '../components/EngagementCards.astro'; import CTASection from '../components/CTASection.astro'; import { services } from '../data/services';
+---
+<BaseLayout title="Game Development Services | GameCore Labs" description="Unity development, prototyping, gameplay programming, optimization and ongoing game development support.">
+  <PageHero eyebrow="OUR SERVICES" title="Everything You Need to Build Great Games" description="From prototypes to production, GameCore Labs provides game development services tailored to your project." />
+  <section class="section-tight"><div class="container services-grid">{services.map(service => <ServiceCard {service} detailed />)}</div></section>
+  <section class="section"><div class="container"><SectionHeading eyebrow="ENGAGEMENT MODELS" title="A clear way to work together." description="Choose the structure that best matches your scope, pace and current project stage." /><EngagementCards /></div></section>
+  <section class="section-tight tech"><div class="container"><SectionHeading eyebrow="TECHNOLOGY" title="A focused, practical toolset." /><div class="tech-list">{['Unity','C#','Git','GitHub','GitLab','Blender','WebGL','Photoshop','Aseprite'].map(item => <span>{item}</span>)}</div></div></section><CTASection />
+</BaseLayout>
+<style>.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}.tech{background:#0a0f17}.tech-list{display:flex;flex-wrap:wrap;gap:.7rem}.tech-list span{padding:.7rem 1rem;border:1px solid var(--line);border-radius:.55rem;background:#101721;color:#cbd4df;font-weight:650;font-size:.88rem}@media(max-width:700px){.services-grid{grid-template-columns:1fr}}</style>

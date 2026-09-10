@@ -1,0 +1,5 @@
+---
+const { number, title, description } = Astro.props;
+---
+<article class="step"><span>{number}</span><h3>{title}</h3><p>{description}</p></article>
+<style>.step{position:relative;padding:1.4rem;border-left:1px solid rgba(124,92,252,.42)}.step span{display:block;color:#8f7cff;font-size:.78rem;font-weight:800;letter-spacing:.14em}.step h3{margin:.55rem 0 .35rem;font-size:1.1rem}.step p{margin:0;color:#929eae;font-size:.88rem}</style>

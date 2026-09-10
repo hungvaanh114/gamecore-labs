@@ -1,0 +1,5 @@
+---
+const { eyebrow, title, description, align = 'left' } = Astro.props;
+---
+<header class:list={['section-heading',align]}><p class="eyebrow">{eyebrow}</p><h2 class="section-title">{title}</h2>{description && <p>{description}</p>}</header>
+<style>.section-heading{margin-bottom:2.2rem}.section-heading p:last-child{max-width:42rem;margin:.9rem 0 0;color:#9ca8b8}.section-heading.center{text-align:center}.section-heading.center :global(.eyebrow){justify-content:center}.section-heading.center p:last-child{margin:.9rem auto 0}</style>

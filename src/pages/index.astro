@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PrimaryButton from '../components/PrimaryButton.astro';
+import SecondaryButton from '../components/SecondaryButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ValueCard from '../components/ValueCard.astro';
+import CTASection from '../components/CTASection.astro';
+import EngagementCards from '../components/EngagementCards.astro';
+import { services } from '../data/services';
+import { featuredProjects } from '../data/projects';
+import { testimonials } from '../data/testimonials';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal"><p class="eyebrow">INDEPENDENT GAME DEVELOPMENT STUDIO</p><h1 class="display">Turn Your Game Ideas <span class="gradient-text">Into Reality.</span></h1><p class="lede">We help creators and teams build polished Unity games, prototypes and gameplay systems — from the first playable idea through production support.</p><div class="hero-actions"><PrimaryButton href="/contact">Start a Project</PrimaryButton><SecondaryButton href="/work">View Our Work</SecondaryButton></div></div>
+      <div class="hero-art"><img src={withBase('/images/hero-game.webp')} alt="Original concept artwork of a game hero wearing a headset" width="960" height="720" fetchpriority="high" /><div class="art-note"><span></span><p>From idea<br/><strong>to playable</strong></p></div></div>
+    </div>
+    <div class="container trust-row"><div><b>Unity focused</b><span>2D & 3D development</span></div><div><b>Fast iteration</b><span>Prototype with purpose</span></div><div><b>Direct communication</b><span>Clear project updates</span></div><div><b>Flexible support</b><span>Built around your scope</span></div></div>
+  </section>
+
+  <section class="section services-home"><div class="container"><SectionHeading eyebrow="WHAT WE DO" title="Development support for every playable milestone." description="A focused set of services for Unity projects, from early proof of concept to production improvements." />
+    <div class="grid-4">{services.slice(0,8).map(service => <ServiceCard {service} />)}</div><div class="center-action"><SecondaryButton href="/services">View All Services</SecondaryButton></div>
+  </div></section>
+
+  <section class="section projects-home"><div class="container"><SectionHeading eyebrow="SELECTED CONCEPTS" title="Featured Projects" description="Demo concepts created to show the kinds of experiences and systems we can help build. They are not presented as client work." />
+    <div class="grid-3">{featuredProjects.map(project => <ProjectCard {project} />)}</div><div class="center-action"><SecondaryButton href="/work">Explore All Projects</SecondaryButton></div>
+  </div></section>
+
+  <section class="section about-home"><div class="container about-grid"><div><p class="eyebrow">ABOUT GAMECORE LABS</p><h2 class="section-title">Small Team.<br/>Big Passion.</h2><p class="lede">GameCore Labs is a small independent game development studio focused on turning ideas into polished game experiences.</p><p class="muted">We work closely with creators and teams from prototype through production.</p><SecondaryButton href="/studio">Meet GameCore Labs</SecondaryButton></div><div class="studio-image"><img src={withBase('/images/studio.webp')} alt="Game development studio workspace with two workstations" width="960" height="720" loading="lazy" /></div></div></section>
+
+  <section class="section-tight values"><div class="container"><SectionHeading eyebrow="WHY GAMECORE LABS" title="Built for practical collaboration." /><div class="grid-4"><ValueCard title="Game-Focused Development" description="Decisions shaped around the play experience." icon="unity"/><ValueCard title="Fast Iteration" description="Test the important questions early." icon="spark"/><ValueCard title="Direct Communication" description="Clear updates and useful conversations." icon="users"/><ValueCard title="Flexible Collaboration" description="Support that fits the stage of your project." icon="refresh"/></div></div></section>
+
+  <section class="section engagement-home"><div class="container"><SectionHeading eyebrow="ENGAGEMENT MODELS" title="Flexible Ways to Work Together" description="Choose a clear project model without invented packages or hidden pricing." /><EngagementCards /></div></section>
+
+  <section class="section-tight"><div class="container"><SectionHeading eyebrow="CLIENT STORIES" title="Trust should be earned." />{testimonials.length === 0 && <div class="testimonial-note card"><p>Client testimonials coming soon.</p><span>We only publish feedback that has been approved and verified.</span></div>}</div></section>
+  <CTASection />
+</BaseLayout>
+<style>
+  .hero{position:relative;overflow:hidden;padding:clamp(3rem,7vw,6rem) 0 0}.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,10,15,.95) 0%,transparent 65%);pointer-events:none}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;min-height:610px}.hero-copy{padding:3rem 0 5rem}.hero-copy .lede{max-width:38rem;margin:1.6rem 0;color:#aeb9c8}.hero-actions{display:flex;gap:.8rem}.hero-art{position:relative;height:100%;align-self:stretch}.hero-art::after{content:"";position:absolute;inset:auto 0 0;height:28%;background:linear-gradient(transparent,#070a0f)}.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:1rem 1rem 0 0;mask-image:linear-gradient(90deg,transparent 0%,black 16%,black 100%)}.art-note{position:absolute;z-index:2;right:1.2rem;bottom:4rem;display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.15);border-radius:.65rem;background:rgba(7,10,15,.72);backdrop-filter:blur(12px)}.art-note span{width:.55rem;height:.55rem;border-radius:50%;background:#7c5cfc;box-shadow:0 0 16px #7c5cfc}.art-note p{margin:0;color:#a8b4c4;font-size:.72rem;line-height:1.35;text-transform:uppercase;letter-spacing:.1em}.art-note strong{color:#fff}.trust-row{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.trust-row div{padding:1.2rem 1.1rem;border-right:1px solid var(--line)}.trust-row div:last-child{border:0}.trust-row b,.trust-row span{display:block}.trust-row b{font-size:.82rem}.trust-row span{color:#7f8b9d;font-size:.72rem}.services-home{background:#0a0f17}.center-action{display:flex;justify-content:center;margin-top:2.3rem}.projects-home{background:radial-gradient(circle at 50% 20%,rgba(55,72,135,.12),transparent 40rem)}.about-home{background:#090e15}.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,6rem);align-items:center}.about-grid .lede{margin:1.3rem 0 .8rem}.about-grid .button{margin-top:1.4rem}.studio-image{position:relative}.studio-image::before{content:"";position:absolute;inset:-1px;border-radius:1rem;background:linear-gradient(135deg,#3b82f6,transparent 40%,#7c5cfc);z-index:0}.studio-image img{position:relative;z-index:1;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1rem;padding:1px}.testimonial-note{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.6rem}.testimonial-note p{margin:0;font-size:1.2rem;font-weight:700}.testimonial-note span{color:#8996a8;font-size:.85rem}.engagement-home{background:#0a0f17}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;min-height:auto}.hero-copy{padding-bottom:2rem}.hero-art{height:440px}.trust-row{grid-template-columns:repeat(2,1fr)}.trust-row div:nth-child(2){border-right:0}.about-grid{grid-template-columns:1fr}.studio-image{order:-1}}
+  @media(max-width:560px){.hero{padding-top:1.5rem}.hero-actions{flex-direction:column}.hero-art{height:350px}.hero-art img{mask-image:linear-gradient(180deg,black 70%,transparent)}.trust-row{grid-template-columns:1fr}.trust-row div{border-right:0;border-bottom:1px solid var(--line)}.testimonial-note{align-items:flex-start;flex-direction:column}.art-note{right:.6rem;bottom:2rem}}
+</style>

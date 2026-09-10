@@ -1,0 +1,6 @@
+---
+import Icon from './Icon.astro';
+const { title, description, icon = 'spark' } = Astro.props;
+---
+<article class="value"><div><Icon name={icon} size={21}/></div><h3>{title}</h3><p>{description}</p></article>
+<style>.value{padding:1.25rem 0;border-top:1px solid var(--line)}.value div{color:#9d8cff;margin-bottom:.8rem}.value h3{margin:0 0 .35rem;font-size:1rem}.value p{margin:0;color:#929eae;font-size:.86rem}</style>

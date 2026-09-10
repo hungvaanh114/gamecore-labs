@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import FAQItem from '../components/FAQItem.astro'; import CTASection from '../components/CTASection.astro';
+const faqs=[
+['How long does a typical project take?','It depends on scope and project readiness. A focused prototype may take several weeks, while a larger production is planned in milestones. We review the brief before proposing a realistic schedule.'],
+['How much does a project cost?','Cost follows scope, complexity and delivery model. We do not publish generic prices because the same feature can require very different levels of polish and integration.'],
+['Can you work with an existing Unity project?','Yes. We first review the current project structure, Unity version, build state and requested changes before defining a safe scope.'],
+['Can you create a game prototype?','Yes. Prototypes are a core service and can focus on a mechanic, proof of concept, MVP or vertical slice.'],
+['Can you fix or optimize an existing game?','Yes. We can investigate gameplay bugs, performance issues, memory pressure and code maintainability. A review usually comes before implementation.'],
+['What platforms do you develop for?','Our work is centered on Unity projects for mobile, PC and WebGL, subject to the specific technical requirements of each project.'],
+['Can we work together long term?','Yes. Retainer support can cover maintenance, feature work and continuous improvements after an initial scope is agreed.'],
+['Do you sign NDAs?','Yes, we can review and sign a reasonable NDA before receiving confidential project materials.']];
+---
+<BaseLayout title="Frequently Asked Questions | GameCore Labs"><PageHero eyebrow="FAQ" title="Frequently Asked Questions" description="Practical answers about project scope, timing and collaboration." compact/><section class="section-tight"><div class="container faq-list">{faqs.map(([question,answer])=><FAQItem {question} {answer}/>)}</div></section><CTASection /></BaseLayout>
+<style>.faq-list{max-width:860px;margin:auto}</style>

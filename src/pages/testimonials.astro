@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/PageHero.astro'; import EmptyTestimonials from '../components/EmptyTestimonials.astro'; import CTASection from '../components/CTASection.astro'; import { testimonials } from '../data/testimonials';
+---
+<BaseLayout title="Client Stories | GameCore Labs"><PageHero eyebrow="TESTIMONIALS" title="What Our Clients Say" description="Real feedback belongs here only after it has been approved for publication." compact/><section class="section-tight"><div class="container">{testimonials.length===0?<EmptyTestimonials/>:<div class="grid-3">{testimonials.map(item=><blockquote class="card"><p>“{item.quote}”</p><footer>{item.name}{item.role&&<span>{item.role}</span>}</footer></blockquote>)}</div>}</div></section><CTASection/></BaseLayout>
+<style>blockquote{margin:0;padding:1.5rem}blockquote p{font-size:1.05rem}blockquote footer{font-weight:700}blockquote span{display:block;color:#8d99aa;font-size:.82rem;font-weight:400}</style>
