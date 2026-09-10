@@ -11,6 +11,11 @@ export default defineConfig({
   base,
   output: 'static',
   trailingSlash: 'always',
+  i18n: {
+    locales: ['en', 'vi'],
+    defaultLocale: 'en',
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
 });

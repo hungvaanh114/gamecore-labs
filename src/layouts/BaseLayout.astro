@@ -3,14 +3,16 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../config/site';
-import { withBase } from '../utils/paths';
-type Props = { title?: string; description?: string; image?: string; noindex?: boolean };
-const { title = `${siteConfig.siteName} | Game Development Studio`, description = siteConfig.siteDescription, image = '/images/hero-game.webp', noindex = false } = Astro.props;
+import { withBase, localeAlternatePath, type Locale } from '../utils/paths';
+type Props = { title?: string; description?: string; image?: string; noindex?: boolean; lang?: Locale };
+const { title = `${siteConfig.siteName} | Game Development Studio`, description = siteConfig.siteDescription, image = '/images/hero-game.webp', noindex = false, lang = 'en' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site || siteConfig.siteUrl);
 const ogImage = new URL(withBase(image), Astro.site || siteConfig.siteUrl);
+const englishUrl = new URL(localeAlternatePath(Astro.url.pathname, 'en'), Astro.site || siteConfig.siteUrl);
+const vietnameseUrl = new URL(localeAlternatePath(Astro.url.pathname, 'vi'), Astro.site || siteConfig.siteUrl);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,6 +20,9 @@ const ogImage = new URL(withBase(image), Astro.site || siteConfig.siteUrl);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="vi" href={vietnameseUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <meta property="og:type" content="website" /><meta property="og:site_name" content={siteConfig.siteName} /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
@@ -26,9 +31,9 @@ const ogImage = new URL(withBase(image), Astro.site || siteConfig.siteUrl);
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Navbar />
+    <a class="skip-link" href="#main">{lang === 'vi' ? 'Bỏ qua để đến nội dung' : 'Skip to content'}</a>
+    <Navbar {lang} />
     <main id="main"><slot /></main>
-    <Footer />
+    <Footer {lang} />
   </body>
 </html>

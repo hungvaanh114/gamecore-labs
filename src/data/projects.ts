@@ -2,7 +2,7 @@ export type Project = {
   slug: string; title: string; shortDescription: string; description: string;
   coverImage: string; gallery: string[]; platform: string[]; genre: string;
   technology: string[]; services: string[]; year: string; featured: boolean;
-  status: 'Demo concept' | 'Prototype concept'; challenge: string; approach: string;
+  status: string; challenge: string; approach: string;
   built: string; features: string[]; technicalWork: string[]; outcome: string;
 };
 

@@ -1,6 +1,6 @@
 # GameCore Labs
 
-A production-ready static studio website for GameCore Labs. It presents Unity development services, clearly labeled demo concepts, engagement models, studio information, FAQs and a project brief form without inventing clients, metrics, testimonials or team members.
+A production-ready bilingual (English and Vietnamese) static studio website for GameCore Labs. It presents Unity development services, clearly labeled demo concepts, engagement models, studio information, FAQs and a project brief form without inventing clients, metrics, testimonials or team members.
 
 ## Tech stack
 
@@ -19,6 +19,8 @@ npm run dev
 ```
 
 The default configuration uses `/gamecore-labs/` as its base path, so the local URL is normally `http://localhost:4321/gamecore-labs/`.
+
+English is served from `/gamecore-labs/`; Vietnamese is served from `/gamecore-labs/vi/`. The navigation and footer include a language switch, and each page publishes matching `hreflang` metadata.
 
 ## Validation and production build
 
@@ -49,7 +51,7 @@ Configure the domain in GitHub Pages, set `SITE_URL` to the custom origin, and s
 
 ## Replacing project data
 
-Edit `src/data/projects.ts`. Each record uses `slug`, `title`, `shortDescription`, `description`, `coverImage`, `gallery`, `platform`, `genre`, `technology`, `services`, `year`, `featured` and `status`. Current entries are explicitly labeled demo concepts. Replace copy and images together when verified work is available. Detail pages are generated from each `slug`.
+Edit `src/data/projects.ts` for English and `src/data/projects-vi.ts` for Vietnamese. Each record uses `slug`, `title`, `shortDescription`, `description`, `coverImage`, `gallery`, `platform`, `genre`, `technology`, `services`, `year`, `featured` and `status`. Current entries are explicitly labeled demo concepts. Replace copy and images together when verified work is available. Detail pages are generated from each `slug`.
 
 ## Replacing images
 

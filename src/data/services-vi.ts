@@ -1,0 +1,10 @@
+export const servicesVi = [
+  { icon:'unity', title:'Phát Triển Unity', description:'Phát triển game Unity tùy chỉnh cho PC, di động và các nền tảng được hỗ trợ.', capabilities:['Phát triển 2D','Phát triển 3D','Lập trình gameplay','Hệ thống game','Triển khai màn chơi','Kiến trúc dự án'] },
+  { icon:'prototype', title:'Làm Nguyên Mẫu Game', description:'Biến ý tưởng ban đầu thành nguyên mẫu có thể chơi trong thời gian ngắn.', capabilities:['Bản chứng minh ý tưởng','MVP','Nguyên mẫu gameplay','Vertical slice','Lặp nhanh'] },
+  { icon:'code', title:'Lập Trình Gameplay', description:'Xây dựng hệ thống người chơi, kẻ địch và tiến trình xoay quanh vòng lặp cốt lõi.', capabilities:['Hệ thống di chuyển','Hệ thống chiến đấu','Điều khiển nhân vật','Hệ thống kẻ địch','Hệ thống tiến trình','Tính năng gameplay tùy chỉnh'] },
+  { icon:'layout', title:'Triển Khai UI/UX', description:'Triển khai giao diện game rõ ràng, thích ứng từ thiết kế hoặc yêu cầu có sẵn.', capabilities:['Menu','HUD','Kho đồ','Cài đặt','Giao diện game','Triển khai UI từ thiết kế được cung cấp'] },
+  { icon:'optimize', title:'Tối Ưu & Sửa Lỗi', description:'Cải thiện hiệu năng, độ ổn định và khả năng bảo trì của dự án Unity.', capabilities:['Tối ưu hiệu năng','Cải thiện FPS','Tối ưu bộ nhớ','Dọn dẹp mã nguồn','Sửa lỗi','Tối ưu game di động'] },
+  { icon:'refresh', title:'Reskin & Chỉnh Sửa Game', description:'Điều chỉnh dự án Unity hiện có với nội dung, hình ảnh và gameplay mới.', capabilities:['Chỉnh sửa dự án Unity','Thay thế hình ảnh','Chỉnh sửa UI','Thêm cơ chế','Cập nhật gameplay','Triển khai tính năng mới'] },
+  { icon:'web', title:'WebGL / Trải Nghiệm Tương Tác', description:'Tạo demo game và trải nghiệm tương tác chạy trực tiếp trên trình duyệt.', capabilities:['Game trình duyệt','Demo WebGL','Trải nghiệm tương tác','Nguyên mẫu game'] },
+  { icon:'support', title:'Hỗ Trợ Phát Triển Liên Tục', description:'Duy trì tiến độ dự án bằng sự hỗ trợ phát triển thiết thực và ổn định.', capabilities:['Bảo trì','Phát triển tính năng','Hỗ trợ kỹ thuật','Cải tiến dự án','Cập nhật'] },
+] as const;

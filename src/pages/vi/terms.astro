@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { siteConfig } from '../../config/site';
+// Nội dung pháp lý cần được rà soát trước khi sử dụng chính thức.
+---
+<BaseLayout lang="vi" title="Điều Khoản Dịch Vụ | GameCore Labs" description="Mẫu điều khoản website cho GameCore Labs.">
+  <PageHero eyebrow="PHÁP LÝ" title="Điều Khoản Dịch Vụ" description="Cập nhật lần cuối: 10/09/2026. Đây là mẫu nội dung chung, cần được rà soát trước khi sử dụng chính thức hoặc cho mục đích pháp lý." compact />
+  <section class="section-tight"><article class="container prose legal">
+    <h2>Sử Dụng Website</h2><p>Bạn có thể sử dụng website này cho mục đích tìm hiểu thông tin và gửi yêu cầu dự án hợp pháp. Không can thiệp vào hoạt động của website hoặc cố gắng truy cập trái phép.</p>
+    <h2>Quyền Sở Hữu Trí Tuệ</h2><p>Thiết kế website, thương hiệu và nội dung gốc được bảo vệ theo luật sở hữu trí tuệ áp dụng. Các ý tưởng dự án demo chỉ có tính minh họa và không đại diện cho công việc khách hàng.</p>
+    <h2>Trao Đổi Dự Án</h2><p>Việc gửi yêu cầu qua website không tạo thành hợp đồng dịch vụ. Phạm vi, chi phí, quyền sở hữu, bảo mật và điều khoản bàn giao phải được thống nhất trong một hợp đồng riêng bằng văn bản.</p>
+    <h2>Liên Kết Bên Thứ Ba</h2><p>Các website bên ngoài được cung cấp để thuận tiện tham khảo. GameCore Labs không chịu trách nhiệm về nội dung, tính khả dụng hoặc chính sách quyền riêng tư của các website đó.</p>
+    <h2>Giới Hạn Trách Nhiệm</h2><p>Website này chỉ cung cấp thông tin. Các giới hạn trách nhiệm cần được rà soát về khả năng áp dụng tại những khu vực pháp lý liên quan đến studio.</p>
+    <h2>Thay Đổi Điều Khoản</h2><p>Điều khoản có thể được cập nhật khi website hoặc hoạt động kinh doanh thay đổi. Ngày sửa đổi hiển thị cũng cần được cập nhật đồng thời.</p>
+    <h2>Liên Hệ</h2><p>Câu hỏi có thể gửi tới <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+  </article></section>
+</BaseLayout>
+<style>.legal{max-width:860px}.legal a{color:#b8c6ff;text-decoration:underline}</style>

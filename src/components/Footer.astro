@@ -1,21 +1,22 @@
 ---
 import Logo from './Logo.astro';
 import { siteConfig } from '../config/site';
-import { withBase } from '../utils/paths';
-const primary = [['Home','/'],['Services','/services'],['Work','/work'],['Studio','/studio'],['Contact','/contact']];
-const secondary = [['FAQ','/faq'],['Engagement','/engagement'],['Privacy','/privacy'],['Terms','/terms']];
+import { localizedPath, localeAlternatePath, type Locale } from '../utils/paths';
+const { lang = 'en' } = Astro.props as { lang?: Locale };
+const primary = lang === 'vi' ? [['Trang chủ','/'],['Dịch vụ','/services'],['Dự án','/work'],['Studio','/studio'],['Liên hệ','/contact']] : [['Home','/'],['Services','/services'],['Work','/work'],['Studio','/studio'],['Contact','/contact']];
+const secondary = lang === 'vi' ? [['Câu hỏi','/faq'],['Hợp tác','/engagement'],['Quyền riêng tư','/privacy'],['Điều khoản','/terms']] : [['FAQ','/faq'],['Engagement','/engagement'],['Privacy','/privacy'],['Terms','/terms']];
 const socials = Object.entries(siteConfig.socialLinks).filter(([,url]) => url);
 ---
 <footer class="footer">
   <div class="container footer-grid">
-    <div class="brand"><Logo /><p>From Idea to Playable Experience.</p><a class="mail" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></div>
-    <nav aria-label="Footer navigation"><h2>Studio</h2>{primary.map(([label,href]) => <a href={withBase(href)}>{label}</a>)}</nav>
-    <nav aria-label="Resources"><h2>Resources</h2>{secondary.map(([label,href]) => <a href={withBase(href)}>{label}</a>)}</nav>
+    <div class="brand"><Logo {lang} /><p>{lang === 'vi' ? 'Từ ý tưởng đến trải nghiệm có thể chơi.' : 'From Idea to Playable Experience.'}</p><a class="mail" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a><a class="language-link" href={localeAlternatePath(Astro.url.pathname, lang === 'vi' ? 'en' : 'vi')}>{lang === 'vi' ? 'View in English' : 'Xem bằng tiếng Việt'}</a></div>
+    <nav aria-label={lang === 'vi' ? 'Điều hướng cuối trang' : 'Footer navigation'}><h2>Studio</h2>{primary.map(([label,href]) => <a href={localizedPath(href, lang)}>{label}</a>)}</nav>
+    <nav aria-label={lang === 'vi' ? 'Tài nguyên' : 'Resources'}><h2>{lang === 'vi' ? 'Tài nguyên' : 'Resources'}</h2>{secondary.map(([label,href]) => <a href={localizedPath(href, lang)}>{label}</a>)}</nav>
     {socials.length > 0 && <nav aria-label="Social links"><h2>Connect</h2>{socials.map(([label,url]) => <a href={url} rel="noreferrer">{label}</a>)}</nav>}
   </div>
-  <div class="container footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.siteName}</span><span>Independent game development studio</span></div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.siteName}</span><span>{lang === 'vi' ? 'Studio phát triển game độc lập' : 'Independent game development studio'}</span></div>
 </footer>
 <style>
-  .footer{padding:4.5rem 0 1.6rem;border-top:1px solid var(--line);background:#070a0f}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}.brand p{color:#8995a6;margin:1rem 0 .6rem}.mail{color:#c7d4ff;font-size:.9rem}.footer h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:#e6eaff;margin:0 0 1rem}.footer nav{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem}.footer nav a{color:#919dad;font-size:.9rem}.footer nav a:hover{color:#fff}.footer-bottom{display:flex;justify-content:space-between;gap:1rem;margin-top:3.5rem;padding-top:1.4rem;border-top:1px solid var(--line);color:#687485;font-size:.78rem}
+  .footer{padding:4.5rem 0 1.6rem;border-top:1px solid var(--line);background:#070a0f}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}.brand p{color:#8995a6;margin:1rem 0 .6rem}.mail{display:block;color:#c7d4ff;font-size:.9rem}.language-link{display:inline-block;margin-top:.8rem;color:#aebdff;font-size:.8rem}.footer h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:#e6eaff;margin:0 0 1rem}.footer nav{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem}.footer nav a{color:#919dad;font-size:.9rem}.footer nav a:hover{color:#fff}.footer-bottom{display:flex;justify-content:space-between;gap:1rem;margin-top:3.5rem;padding-top:1.4rem;border-top:1px solid var(--line);color:#687485;font-size:.78rem}
   @media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}.brand{grid-column:1/-1}.footer-bottom{flex-direction:column}}
 </style>

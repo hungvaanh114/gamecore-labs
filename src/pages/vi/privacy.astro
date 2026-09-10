@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { siteConfig } from '../../config/site';
+---
+<BaseLayout lang="vi" title="Chính Sách Quyền Riêng Tư | GameCore Labs" description="Mẫu chính sách quyền riêng tư cho website GameCore Labs.">
+  <PageHero eyebrow="PHÁP LÝ" title="Chính Sách Quyền Riêng Tư" description="Cập nhật lần cuối: 10/09/2026. Đây là mẫu nội dung chung, cần được rà soát trước khi sử dụng chính thức hoặc cho mục đích pháp lý." compact />
+  <section class="section-tight"><article class="container prose legal">
+    <h2>Thông Tin Chúng Tôi Thu Thập</h2><p>Chúng tôi có thể thu thập thông tin bạn chủ động cung cấp như họ tên, địa chỉ email, tổ chức và thông tin dự án.</p>
+    <h2>Cách Chúng Tôi Sử Dụng Thông Tin</h2><p>Thông tin được dùng để phản hồi yêu cầu, đánh giá mức độ phù hợp của dự án, trao đổi về dịch vụ và duy trì an toàn cho website.</p>
+    <h2>Biểu Mẫu Liên Hệ</h2><p>Khi một điểm nhận biểu mẫu được cấu hình, dữ liệu mô tả dự án sẽ được gửi tới dịch vụ đó. Hãy rà soát nhà cung cấp và cập nhật chính sách này trước khi kích hoạt.</p>
+    <h2>Cookie</h2><p>Mẫu website này không cài cookie theo dõi tùy chọn. Nhà cung cấp hosting có thể sử dụng dữ liệu kỹ thuật thiết yếu để vận hành và bảo vệ website.</p>
+    <h2>Dịch Vụ Bên Thứ Ba</h2><p>Các liên kết ngoài và nhà cung cấp biểu mẫu trong tương lai có thể xử lý dữ liệu theo điều khoản riêng. Cần cấu hình và công bố các dịch vụ đó trước khi sử dụng chính thức.</p>
+    <h2>Thời Gian Lưu Trữ</h2><p>Chỉ lưu dữ liệu yêu cầu trong khoảng thời gian hợp lý cần thiết cho trao đổi, lập kế hoạch dự án và các nghĩa vụ áp dụng.</p>
+    <h2>Quyền Của Bạn</h2><p>Tùy nơi cư trú, bạn có thể yêu cầu truy cập, chỉnh sửa hoặc xóa thông tin cá nhân. Quy định pháp luật khác nhau theo từng khu vực.</p>
+    <h2>Liên Hệ</h2><p>Câu hỏi về mẫu chính sách này có thể gửi tới <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+  </article></section>
+</BaseLayout>
+<style>.legal{max-width:860px}.legal a{color:#b8c6ff;text-decoration:underline}</style>

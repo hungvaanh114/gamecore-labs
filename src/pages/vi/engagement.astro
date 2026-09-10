@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import EngagementCards from '../../components/EngagementCards.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const detail = [
+  ['Phạm Vi Cố Định', 'Dành cho một tính năng, bản dựng hoặc cột mốc đã được xác định. Chúng tôi thống nhất yêu cầu, hạng mục bàn giao và tiêu chí nghiệm thu trước khi bắt đầu.', 'Phạm vi dễ dự đoán, kỳ vọng rõ ràng và điểm hoàn thành cụ thể.', 'Triển khai tính năng, game quy mô nhỏ, reskin đã xác định hoặc một đợt tối ưu tập trung.'],
+  ['Sprint Chuyên Biệt', 'Dành cho giai đoạn phát triển tập trung, nơi ưu tiên có thể thay đổi khi bản dựng được thử nghiệm.', 'Phản hồi nhanh, ưu tiên linh hoạt và tiến độ minh bạch qua từng vòng lặp.', 'Phát triển nguyên mẫu, vertical slice, thử nghiệm gameplay hoặc tăng tốc sản xuất.'],
+  ['Hợp Tác Dài Hạn', 'Dành cho đội ngũ cần năng lực phát triển định kỳ sau khi đã thiết lập nhịp làm việc chung.', 'Duy trì tính liên tục, giữ nguyên ngữ cảnh dự án và có không gian cho cải tiến lâu dài.', 'Bảo trì, phát triển tính năng thường xuyên, sửa lỗi và hỗ trợ kỹ thuật.'],
+];
+---
+<BaseLayout lang="vi" title="Hình Thức Hợp Tác | GameCore Labs" description="Các hình thức hợp tác linh hoạt cho dự án game.">
+  <PageHero eyebrow="HÌNH THỨC HỢP TÁC" title="Cách Làm Việc Linh Hoạt" description="Mô hình hợp tác rõ ràng cho công việc xác định, phát triển nhanh hoặc dài hạn." />
+  <section class="section-tight"><div class="container"><EngagementCards lang="vi" /></div></section>
+  <section class="section details"><div class="container detail-list">{detail.map(([title, how, advantages, uses], i) => <article><span>0{i + 1}</span><div><h2>{title}</h2><h3>Cách thức hoạt động</h3><p>{how}</p><h3>Lợi ích</h3><p>{advantages}</p><h3>Trường hợp phù hợp</h3><p>{uses}</p></div></article>)}</div></section>
+  <CTASection lang="vi" title="Chia Sẻ Về Dự Án Của Bạn" text="Chúng tôi sẽ giúp bạn chọn hình thức phù hợp với công việc — không gói dịch vụ dư thừa hay cam kết không cần thiết." />
+</BaseLayout>
+<style>.details{background:#0a0f17}.detail-list{display:grid;gap:1rem}.detail-list article{display:grid;grid-template-columns:5rem 1fr;gap:1rem;padding:1.6rem;border-top:1px solid var(--line)}.detail-list article>span{color:#7963ed;font-size:1.8rem;font-weight:800}.detail-list h2{margin:0 0 1rem;font-size:1.6rem}.detail-list h3{margin:1rem 0 .25rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:#c4ceff}.detail-list p{margin:0;color:#9ca8b8}@media(max-width:600px){.detail-list article{grid-template-columns:1fr}.detail-list article>span{font-size:1rem}}</style>

@@ -1,12 +1,14 @@
 ---
 import Icon from './Icon.astro';
 import { withBase } from '../utils/paths';
-const { project } = Astro.props;
-const filters = [project.platform[0], project.genre.includes('2D') ? '2D' : '3D', project.status.includes('Prototype') ? 'Prototype' : 'Demo'].join(' ');
+const { project, lang = 'en' } = Astro.props;
+const isPrototype = project.status.toLowerCase().includes('prototype') || project.status.toLowerCase().includes('nguyên mẫu');
+const filters = [project.platform[0], project.genre.includes('2D') ? '2D' : '3D', isPrototype ? 'Prototype Nguyên mẫu' : 'Demo'].join(' ');
+const href = lang === 'vi' ? `/vi/work/${project.slug}/` : `/work/${project.slug}/`;
 ---
 <article class="project card card-hover" data-project data-filters={filters}>
-  <a href={withBase(`/work/${project.slug}/`)} aria-label={`View ${project.title} demo concept`}>
-    <div class="image-wrap"><img src={withBase(project.coverImage)} alt={`${project.title} demo concept artwork`} width="720" height="450" loading="lazy" /><span class="status">{project.status}</span></div>
+  <a href={withBase(href)} aria-label={lang === 'vi' ? `Xem dự án mẫu ${project.title}` : `View ${project.title} demo concept`}>
+    <div class="image-wrap"><img src={withBase(project.coverImage)} alt={lang === 'vi' ? `Hình minh họa ý tưởng ${project.title}` : `${project.title} demo concept artwork`} width="720" height="450" loading="lazy" /><span class="status">{project.status}</span></div>
     <div class="content"><div><h3>{project.title}</h3><p>{project.platform.join(' / ')} · {project.genre}</p></div><span class="arrow"><Icon name="arrow" size={17} /></span><p class="description">{project.shortDescription}</p></div>
   </a>
 </article>

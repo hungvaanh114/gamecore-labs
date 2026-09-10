@@ -1,28 +1,33 @@
 ---
 import Logo from './Logo.astro';
 import PrimaryButton from './PrimaryButton.astro';
-import { withBase } from '../utils/paths';
+import { localizedPath, localeAlternatePath, type Locale } from '../utils/paths';
+const { lang = 'en' } = Astro.props as { lang?: Locale };
 const path = Astro.url.pathname;
-const links = [
-  ['Home','/'],['Services','/services'],['Work','/work'],['Studio','/studio'],['Contact','/contact']
-];
-const active = (href:string) => href === '/' ? path === withBase('/') : path.startsWith(withBase(href));
+const links = lang === 'vi'
+  ? [['Trang chủ','/'],['Dịch vụ','/services'],['Dự án','/work'],['Studio','/studio'],['Liên hệ','/contact']]
+  : [['Home','/'],['Services','/services'],['Work','/work'],['Studio','/studio'],['Contact','/contact']];
+const active = (href:string) => href === '/' ? path === localizedPath('/', lang) : path.startsWith(localizedPath(href, lang));
+const alternateLocale: Locale = lang === 'vi' ? 'en' : 'vi';
+const alternateUrl = localeAlternatePath(path, alternateLocale);
 ---
 <header class="site-header" data-header>
   <div class="container nav-wrap">
-    <Logo />
+    <Logo {lang} />
     <nav class="desktop-nav" aria-label="Primary navigation">
-      {links.map(([label,href]) => <a href={withBase(href)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
+      {links.map(([label,href]) => <a href={localizedPath(href, lang)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
+      <a class="language" href={alternateUrl} lang={alternateLocale} hreflang={alternateLocale} aria-label={lang === 'vi' ? 'Switch to English' : 'Chuyển sang tiếng Việt'}>{lang === 'vi' ? 'EN' : 'VI'}</a>
     </nav>
-    <div class="nav-action"><PrimaryButton href="/contact">Start a Project</PrimaryButton></div>
+    <div class="nav-action"><PrimaryButton href={lang === 'vi' ? '/vi/contact' : '/contact'}>{lang === 'vi' ? 'Bắt đầu dự án' : 'Start a Project'}</PrimaryButton></div>
     <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
       <span></span><span></span><span></span>
     </button>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav hidden>
     <div class="container">
-      {links.map(([label,href]) => <a href={withBase(href)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
-      <PrimaryButton href="/contact">Start a Project</PrimaryButton>
+      {links.map(([label,href]) => <a href={localizedPath(href, lang)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
+      <a class="mobile-language" href={alternateUrl} lang={alternateLocale}>{lang === 'vi' ? 'English' : 'Tiếng Việt'}</a>
+      <PrimaryButton href={lang === 'vi' ? '/vi/contact' : '/contact'}>{lang === 'vi' ? 'Bắt đầu dự án' : 'Start a Project'}</PrimaryButton>
     </div>
   </nav>
 </header>
@@ -40,7 +45,7 @@ const active = (href:string) => href === '/' ? path === withBase('/') : path.sta
 </script>
 <style>
   .site-header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:rgba(7,10,15,.72);backdrop-filter:blur(18px);transition:border-color .25s,background .25s}.site-header.scrolled{border-color:var(--line);background:rgba(7,10,15,.92)}
-  .nav-wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.desktop-nav{display:flex;align-items:center;gap:1.75rem;margin-left:auto}.desktop-nav a{position:relative;color:#aab4c4;font-size:.83rem;font-weight:650}.desktop-nav a:hover,.desktop-nav a[aria-current=page]{color:white}.desktop-nav a[aria-current=page]::after{content:"";position:absolute;left:0;right:0;bottom:-.55rem;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple))}.nav-action :global(.button){min-height:2.55rem;padding:.65rem .92rem;font-size:.8rem}
-  .menu-button{display:none;width:2.8rem;height:2.8rem;border:1px solid var(--line);border-radius:.55rem;background:#111824;align-items:center;justify-content:center;flex-direction:column;gap:5px}.menu-button span{width:18px;height:1.5px;background:white}.mobile-nav{border-top:1px solid var(--line);background:#080d14}.mobile-nav .container{display:grid;gap:.2rem;padding-block:.8rem 1.2rem}.mobile-nav a:not(.button){padding:.8rem;border-bottom:1px solid var(--line);color:#c5cfdb}.mobile-nav .button{margin-top:.8rem}
+  .nav-wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:2rem}.desktop-nav{display:flex;align-items:center;gap:1.55rem;margin-left:auto}.desktop-nav a{position:relative;color:#aab4c4;font-size:.83rem;font-weight:650}.desktop-nav a:hover,.desktop-nav a[aria-current=page]{color:white}.desktop-nav a[aria-current=page]::after{content:"";position:absolute;left:0;right:0;bottom:-.55rem;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple))}.desktop-nav .language{display:grid;place-items:center;width:2rem;height:2rem;border:1px solid var(--line);border-radius:.45rem;color:#d8e0ec;font-size:.72rem}.desktop-nav .language::after{display:none}.nav-action :global(.button){min-height:2.55rem;padding:.65rem .92rem;font-size:.8rem}
+  .menu-button{display:none;width:2.8rem;height:2.8rem;border:1px solid var(--line);border-radius:.55rem;background:#111824;align-items:center;justify-content:center;flex-direction:column;gap:5px}.menu-button span{width:18px;height:1.5px;background:white}.mobile-nav{border-top:1px solid var(--line);background:#080d14}.mobile-nav .container{display:grid;gap:.2rem;padding-block:.8rem 1.2rem}.mobile-nav a:not(.button){padding:.8rem;border-bottom:1px solid var(--line);color:#c5cfdb}.mobile-nav .mobile-language{color:#aebdff;font-weight:750}.mobile-nav .button{margin-top:.8rem}
   @media(max-width:800px){.desktop-nav,.nav-action{display:none}.menu-button{display:flex}}
 </style>
