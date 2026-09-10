@@ -67,6 +67,14 @@ PUBLIC_CONTACT_FORM_ENDPOINT=https://your-form-service.example/submit
 
 When configured, the browser sends JSON with a `POST` request. When absent, the form displays a development message and directs visitors to the contact email. No fake backend is included.
 
+## Products and admin
+
+The public product catalog is available at `/products/` and `/vi/products/`. The protected management interface is at `/admin/` and supports product pricing, images, categories, reference games, comments, inquiries, and view/click totals.
+
+Firebase provides authentication, Firestore persistence, image storage, counters and Gmail notifications while GitHub Pages continues to host the public site. Follow `FIREBASE_SETUP.md` to connect a Firebase project and Gmail app password. Never put the normal Gmail password in this repository.
+
+Demo game pages include clearly labeled reference price ranges. Final prices should be confirmed against the agreed scope and supplied assets.
+
 ## Branding, email and social links
 
 Edit `src/config/site.ts` to update the name, description, canonical URL, contact email and social URLs. Empty social URLs are intentionally hidden.

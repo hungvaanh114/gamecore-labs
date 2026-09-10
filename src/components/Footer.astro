@@ -3,7 +3,7 @@ import Logo from './Logo.astro';
 import { siteConfig } from '../config/site';
 import { localizedPath, localeAlternatePath, type Locale } from '../utils/paths';
 const { lang = 'en' } = Astro.props as { lang?: Locale };
-const primary = lang === 'vi' ? [['Trang chủ','/'],['Dịch vụ','/services'],['Dự án','/work'],['Studio','/studio'],['Liên hệ','/contact']] : [['Home','/'],['Services','/services'],['Work','/work'],['Studio','/studio'],['Contact','/contact']];
+const primary = lang === 'vi' ? [['Trang chủ','/'],['Dịch vụ','/services'],['Dự án','/work'],['Sản phẩm','/products'],['Studio','/studio'],['Liên hệ','/contact']] : [['Home','/'],['Services','/services'],['Work','/work'],['Products','/products'],['Studio','/studio'],['Contact','/contact']];
 const secondary = lang === 'vi' ? [['Câu hỏi','/faq'],['Hợp tác','/engagement'],['Quyền riêng tư','/privacy'],['Điều khoản','/terms']] : [['FAQ','/faq'],['Engagement','/engagement'],['Privacy','/privacy'],['Terms','/terms']];
 const socials = Object.entries(siteConfig.socialLinks).filter(([,url]) => url);
 ---

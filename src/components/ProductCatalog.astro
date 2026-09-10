@@ -1,0 +1,42 @@
+---
+import { firebaseConfigured } from '../lib/firebase';
+const { lang = 'en' } = Astro.props;
+---
+<div class="catalog" data-product-catalog data-lang={lang} data-configured={String(firebaseConfigured)}>
+  <p class="catalog-status card" data-catalog-status>{lang === 'vi' ? 'Đang tải sản phẩm…' : 'Loading products…'}</p>
+  <div class="product-grid" data-product-grid></div>
+</div>
+<script>
+  import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+  import { getFunctions, httpsCallable } from 'firebase/functions';
+  import { getFirebaseApp } from '../lib/firebase';
+
+  const root = document.querySelector<HTMLElement>('[data-product-catalog]');
+  const grid = root?.querySelector<HTMLElement>('[data-product-grid]');
+  const status = root?.querySelector<HTMLElement>('[data-catalog-status]');
+  const vi = root?.dataset.lang === 'vi';
+  const money = (value: number, currency = 'USD') => new Intl.NumberFormat(vi ? 'vi-VN' : 'en-US', { style: 'currency', currency }).format(value || 0);
+  const escapeHtml = (value = '') => value.replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char] || char));
+
+  async function loadProducts() {
+    if (!root || !grid || !status) return;
+    if (root.dataset.configured !== 'true') { status.textContent = vi ? 'Sản phẩm đang được cập nhật.' : 'Products are being updated.'; return; }
+    try {
+      const app = getFirebaseApp(); const db = getFirestore(app); const functions = getFunctions(app, 'asia-southeast1');
+      const [snapshot, commentSnapshot] = await Promise.all([
+        getDocs(query(collection(db, 'products'), where('published', '==', true))),
+        getDocs(query(collection(db, 'comments'), where('published', '==', true))),
+      ]);
+      const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Record<string, any>)).sort((a, b) => (a.order || 0) - (b.order || 0));
+      const comments = commentSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Record<string, any>));
+      if (!products.length) { status.textContent = vi ? 'Chưa có sản phẩm công khai.' : 'No products are published yet.'; return; }
+      status.hidden = true;
+      grid.innerHTML = products.map(product => { const productComments = comments.filter(comment => comment.productId === product.id); return `<article class="product-card card" data-product-id="${escapeHtml(product.id)}"><div class="product-image">${product.imageUrl ? `<img src="${escapeHtml(product.imageUrl)}" alt="${escapeHtml(product.title)}" loading="lazy">` : '<span aria-hidden="true">◆</span>'}</div><div class="product-body"><p class="product-kind">${escapeHtml(product.category || (vi ? 'Sản phẩm' : 'Product'))}</p><h2>${escapeHtml(product.title)}</h2><p>${escapeHtml(product.description || '')}</p>${product.referenceGame ? `<p class="reference"><b>${vi ? 'Tham khảo' : 'Reference'}:</b> ${escapeHtml(product.referenceGame)}</p>` : ''}${productComments.length ? `<div class="comments"><b>${vi ? 'Bình luận' : 'Comments'}</b>${productComments.map(comment => `<blockquote>“${escapeHtml(comment.content)}” <cite>— ${escapeHtml(comment.author)}</cite></blockquote>`).join('')}</div>` : ''}<div class="product-footer"><strong>${money(Number(product.price), product.currency)}</strong>${product.ctaUrl ? `<a class="button button-primary" data-product-click href="${escapeHtml(product.ctaUrl)}" target="_blank" rel="noreferrer">${escapeHtml(product.ctaLabel || (vi ? 'Xem chi tiết' : 'View details'))}</a>` : ''}</div></div></article>`; }).join('');
+      const track = httpsCallable(functions, 'trackEvent');
+      products.forEach(product => { const key = `gamecore-view-${product.id}`; if (!sessionStorage.getItem(key)) { sessionStorage.setItem(key, '1'); track({ productId: product.id, event: 'view' }).catch(() => undefined); } });
+      grid.querySelectorAll<HTMLAnchorElement>('[data-product-click]').forEach(link => link.addEventListener('click', () => track({ productId: link.closest<HTMLElement>('[data-product-id]')?.dataset.productId, event: 'click' }).catch(() => undefined)));
+    } catch { status.textContent = vi ? 'Không thể tải sản phẩm lúc này.' : 'Products could not be loaded right now.'; }
+  }
+  loadProducts();
+</script>
+<style>.catalog-status{padding:2rem;text-align:center;color:#aab6c5}.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}.product-card{overflow:hidden}.product-image{display:grid;place-items:center;aspect-ratio:16/10;background:#0a111b;color:#7963ed;font-size:2rem}.product-image img{width:100%;height:100%;object-fit:cover}.product-body{padding:1.3rem}.product-kind{margin:0;color:#9eadff;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em}.product-body h2{margin:.35rem 0;font-size:1.3rem}.product-body>p:not(.product-kind){color:#9ca8b8}.reference{font-size:.8rem}.comments{display:grid;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.8rem}.comments blockquote{margin:0;color:#aab5c4}.comments cite{color:#d3dbeb;font-style:normal}.product-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.2rem}.product-footer strong{font-size:1.15rem}.product-footer .button{min-height:2.5rem;padding:.6rem .85rem;font-size:.8rem}@media(max-width:900px){.product-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.product-grid{grid-template-columns:1fr}.product-footer{align-items:stretch;flex-direction:column}}</style>

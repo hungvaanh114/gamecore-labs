@@ -1,0 +1,6 @@
+---
+import '../styles/global.css';
+import { withBase } from '../utils/paths';
+const { title = 'Quản trị | GameCore Labs' } = Astro.props;
+---
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>{title}</title><link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/></head><body><main><slot/></main></body></html>

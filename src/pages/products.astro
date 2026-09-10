@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProductCatalog from '../components/ProductCatalog.astro';
+---
+<BaseLayout title="Products | GameCore Labs" description="Products, tools and packages published by GameCore Labs.">
+  <PageHero eyebrow="PRODUCTS" title="Products & Tools" description="Published tools, packages and game-development products from GameCore Labs." compact />
+  <section class="section-tight"><div class="container"><ProductCatalog /></div></section>
+</BaseLayout>

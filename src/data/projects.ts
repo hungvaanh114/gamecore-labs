@@ -3,7 +3,7 @@ export type Project = {
   coverImage: string; gallery: string[]; platform: string[]; genre: string;
   technology: string[]; services: string[]; year: string; featured: boolean;
   status: string; challenge: string; approach: string;
-  built: string; features: string[]; technicalWork: string[]; outcome: string;
+  built: string; features: string[]; technicalWork: string[]; outcome: string; priceEstimate: string;
 };
 
 // Demo concepts only. Replace these records and images with verified portfolio work.
@@ -18,7 +18,7 @@ export const projects: Project[] = [
     built: 'A playable race loop, touch controls, camera system and modular track events.',
     features: ['Touch-friendly steering', 'Dynamic chase camera', 'Modular race events', 'Reusable vehicle tuning'],
     technicalWork: ['Vehicle controller architecture', 'Input abstraction', 'Object pooling', 'Mobile performance pass'],
-    outcome: 'A presentation-ready demo concept designed to demonstrate our workflow, not a shipped client title.'
+    outcome: 'A presentation-ready demo concept designed to demonstrate our workflow, not a shipped client title.', priceEstimate: 'From $1,000 – $2,500'
   },
   {
     slug: 'tiny-world', title: 'Tiny World', shortDescription: 'A compact platform adventure above the clouds.',
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     technology: ['Unity', 'C#', 'Blender'], services: ['Game Prototyping', 'Level Implementation'], year: 'Demo', featured: true, status: 'Prototype concept',
     challenge: 'Make traversal feel playful while keeping a small environment easy to read.', approach: 'Block out movement and camera behavior before layering art and interactions.',
     built: 'A character controller, collectible loop, environmental triggers and modular island kit.', features: ['Responsive traversal', 'Collectible loop', 'Modular environments', 'Camera assists'],
-    technicalWork: ['Character state machine', 'Camera collision', 'Reusable interaction system'], outcome: 'A compact demonstration of prototype-to-polish development.'
+    technicalWork: ['Character state machine', 'Camera collision', 'Reusable interaction system'], outcome: 'A compact demonstration of prototype-to-polish development.', priceEstimate: 'From $800 – $2,000'
   },
   {
     slug: 'lost-signals', title: 'Lost Signals', shortDescription: 'A stealth encounter shaped by light and sound.',
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     technology: ['Unity', 'C#'], services: ['Gameplay Programming', 'Game Systems'], year: 'Demo', featured: true, status: 'Demo concept',
     challenge: 'Communicate enemy awareness without pulling the player out of the atmosphere.', approach: 'Build perception states around consistent world cues and testable rules.',
     built: 'Patrol behaviors, distraction tools, awareness feedback and checkpoint flow.', features: ['AI perception states', 'Distraction system', 'Stealth feedback', 'Checkpoint flow'],
-    technicalWork: ['Finite-state AI', 'Event-driven audio cues', 'Debug visualization'], outcome: 'A demo concept illustrating systemic gameplay implementation.'
+    technicalWork: ['Finite-state AI', 'Event-driven audio cues', 'Debug visualization'], outcome: 'A demo concept illustrating systemic gameplay implementation.', priceEstimate: 'From $1,200 – $3,200'
   },
   {
     slug: 'orbit-defense', title: 'Orbit Defense', shortDescription: 'A compact strategy loop around an island outpost.',
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     coverImage: '/images/project-defense.webp', gallery: ['/images/project-defense.webp', '/images/project-defense-detail-1.webp', '/images/project-defense-detail-2.webp'], platform: ['WebGL'], genre: '2D Strategy',
     technology: ['Unity', 'C#', 'WebGL'], services: ['Game Prototyping', 'WebGL'], year: 'Demo', featured: false, status: 'Prototype concept',
     challenge: 'Keep strategic decisions readable on a small playfield.', approach: 'Use data-driven waves and clear range, path and upgrade feedback.', built: 'Placement, targeting, waves and upgrade systems.',
-    features: ['Data-driven waves', 'Tower upgrades', 'Readable targeting', 'Compact sessions'], technicalWork: ['ScriptableObject data', 'Pooling', 'WebGL build pass'], outcome: 'A flexible prototype foundation for browser playtesting.'
+    features: ['Data-driven waves', 'Tower upgrades', 'Readable targeting', 'Compact sessions'], technicalWork: ['ScriptableObject data', 'Pooling', 'WebGL build pass'], outcome: 'A flexible prototype foundation for browser playtesting.', priceEstimate: 'From $600 – $1,600'
   },
   {
     slug: 'pixel-chef', title: 'Pixel Chef', shortDescription: 'A cheerful timing challenge for quick sessions.',
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     coverImage: '/images/project-chef.webp', gallery: ['/images/project-chef.webp', '/images/project-chef-detail-1.webp', '/images/project-chef-detail-2.webp'], platform: ['Mobile'], genre: '2D Casual',
     technology: ['Unity', 'C#', 'Aseprite'], services: ['UI Implementation', 'Gameplay Programming'], year: 'Demo', featured: false, status: 'Demo concept',
     challenge: 'Make a fast queue understandable without visual clutter.', approach: 'Prototype information hierarchy and timing feedback alongside core mechanics.', built: 'Order queues, recipe data, scoring and responsive HUD states.',
-    features: ['Recipe system', 'Order queue', 'Timing feedback', 'Responsive UI'], technicalWork: ['Data-driven content', 'UI state management', 'Touch input'], outcome: 'A demo concept for clear mobile UI and short-session gameplay.'
+    features: ['Recipe system', 'Order queue', 'Timing feedback', 'Responsive UI'], technicalWork: ['Data-driven content', 'UI state management', 'Touch input'], outcome: 'A demo concept for clear mobile UI and short-session gameplay.', priceEstimate: 'From $600 – $1,400'
   },
   {
     slug: 'shadow-protocol', title: 'Shadow Protocol', shortDescription: 'A tense action prototype in abandoned ruins.',
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     coverImage: '/images/project-shadow.webp', gallery: ['/images/project-shadow.webp', '/images/project-shadow-detail-1.webp', '/images/project-shadow-detail-2.webp'], platform: ['PC'], genre: '3D Action',
     technology: ['Unity', 'C#'], services: ['Gameplay Programming', 'Optimization'], year: 'Demo', featured: false, status: 'Prototype concept',
     challenge: 'Create pressure with a small set of reusable enemy behaviors.', approach: 'Build modular combat states, then tune readability and pacing.', built: 'Player abilities, enemy states, hit feedback and encounter sequencing.',
-    features: ['Modular abilities', 'Enemy behavior states', 'Impact feedback', 'Encounter sequencing'], technicalWork: ['Combat architecture', 'Animation events', 'Profiling pass'], outcome: 'A prototype concept demonstrating modular action systems.'
+    features: ['Modular abilities', 'Enemy behavior states', 'Impact feedback', 'Encounter sequencing'], technicalWork: ['Combat architecture', 'Animation events', 'Profiling pass'], outcome: 'A prototype concept demonstrating modular action systems.', priceEstimate: 'From $1,400 – $3,600'
   }
 ];
 
