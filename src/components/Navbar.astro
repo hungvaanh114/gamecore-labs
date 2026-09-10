@@ -14,7 +14,7 @@ const active = (href:string) => href === '/' ? path === localizedPath('/', lang)
     <Logo {lang} />
     <nav class="desktop-nav" aria-label="Primary navigation">
       {links.map(([label,href]) => <a href={localizedPath(href, lang)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
-      <details class="language-menu"><summary>Ngôn ngữ</summary><div><a href={localeAlternatePath(path, 'vi')} lang="vi" hreflang="vi" aria-current={lang === 'vi' ? 'true' : undefined}>Tiếng Việt</a><a href={localeAlternatePath(path, 'en')} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>English</a></div></details>
+      <details class="language-menu"><summary>{lang === 'vi' ? 'Ngôn ngữ' : 'Language'}</summary><div><a href={localeAlternatePath(path, 'vi')} lang="vi" hreflang="vi" aria-current={lang === 'vi' ? 'true' : undefined}>Tiếng Việt</a><a href={localeAlternatePath(path, 'en')} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>English</a></div></details>
     </nav>
     <div class="nav-action"><PrimaryButton href={lang === 'vi' ? '/vi/contact' : '/contact'}>{lang === 'vi' ? 'Bắt đầu dự án' : 'Start a Project'}</PrimaryButton></div>
     <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
@@ -24,7 +24,7 @@ const active = (href:string) => href === '/' ? path === localizedPath('/', lang)
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav hidden>
     <div class="container">
       {links.map(([label,href]) => <a href={localizedPath(href, lang)} aria-current={active(href) ? 'page' : undefined}>{label}</a>)}
-      <details class="mobile-language"><summary>Ngôn ngữ</summary><a href={localeAlternatePath(path, 'vi')} lang="vi">Tiếng Việt</a><a href={localeAlternatePath(path, 'en')} lang="en">English</a></details>
+      <details class="mobile-language"><summary>{lang === 'vi' ? 'Ngôn ngữ' : 'Language'}</summary><a href={localeAlternatePath(path, 'vi')} lang="vi">Tiếng Việt</a><a href={localeAlternatePath(path, 'en')} lang="en">English</a></details>
       <PrimaryButton href={lang === 'vi' ? '/vi/contact' : '/contact'}>{lang === 'vi' ? 'Bắt đầu dự án' : 'Start a Project'}</PrimaryButton>
     </div>
   </nav>
